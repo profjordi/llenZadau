@@ -49,7 +49,7 @@ function _DAU (VALOR: number) {
             `)
     }
 }
-let DAU2 = 0
+let DAU1 = 0
 basic.showLeds(`
     # . . . #
     . . . . .
@@ -58,7 +58,6 @@ basic.showLeds(`
     # . . . #
     `)
 basic.forever(function () {
-    let DAU1 = 0
     basic.showLeds(`
         # . . . #
         . # . # .
@@ -66,6 +65,9 @@ basic.forever(function () {
         . # . # .
         # . . . #
         `)
+    while (!(input.isGesture(Gesture.Shake))) {
+        control.waitMicros(500)
+    }
     control.waitMicros(1000)
     while (input.isGesture(Gesture.Shake)) {
         control.waitMicros(500)
@@ -77,9 +79,15 @@ basic.forever(function () {
             . . # . .
             `)
     }
+    basic.showLeds(`
+        # # # # #
+        # . . . #
+        # . . . #
+        # . . . #
+        # # # # #
+        `)
     control.waitMicros(500)
-    DAU2 = randint(1, 6)
-    DAU2 = randint(1, 6)
+    DAU1 = randint(1, 6)
     _DAU(DAU1)
-    control.waitMicros(1000)
+    control.waitMicros(10000)
 })
